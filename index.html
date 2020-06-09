@@ -1,5 +1,46 @@
 <html>
-<body>
+  <head>
+  <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['timeline']}]}"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+			chart.draw(data, options);
+		
+
+			google.visualization.events.addListener(chart, 'click', changeImage);
+
+			function selectHandler(e) {
+			 alert(chart.getSelection());
+			}
+			
+			function changeImage(e) {
+			 var img1 = document.getElementById('img1');
+			 img1.src ='figure/tree_2.png'
+			}
+		}
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
 <div class="slider">
   
   <a href="#slide-1">1</a>
@@ -10,22 +51,24 @@
 
   <div class="slides">
     <div id="slide-1">
-      <img src="figure/tree_1.png" alt="tree_1">
+      <img src="figure/tree_1.png" alt="tree_1" id='img1'>
     </div>
     <div id="slide-2">
-      <img src="figure/tree_2.png" alt="tree_2">
+      <img src="figure/tree_2.png" alt="tree_2" id='img2'>
     </div>
     <div id="slide-3">
-      <img src="figure/tree_3.png" alt="tree_3">
+      <img src="figure/tree_3.png" alt="tree_3" id='img3'>
     </div>
     <div id="slide-4">
-      <img src="figure/tree_4.png" alt="tree_4">
+      <img src="figure/tree_4.png" alt="tree_4" id='img4'>
     </div>
     <div id="slide-5">
-      <img src="figure/tree_5.png" alt="tree_5">
+      <img src="figure/tree_5.png" alt="tree_5" id='img5'>
     </div>
   </div>
 </div>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </body>
+
+
 </html>
